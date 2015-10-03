@@ -1,0 +1,42 @@
+<%= form_for(@pedido) do |f| %>
+  <% if @pedido.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pedido.errors.count, "error") %> prohibited this pedido from being saved:</h2>
+
+      <ul>
+      <% @pedido.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td></td>   
+      <td>Produtos</td>
+      <td>Quantidade</td>
+      <td>Preço</td>
+    </tr>
+    <% @produtos.each do |produto| %>
+      <tr>
+        <td><%= check_box("post", "validated")%></td>
+        <td><%= link_to "#{produto.nome}", produto %></td>
+        <td><%= text_field(:quantidade, :title, size: 10) %></td>
+        <td><%= "#{produto.preco}" %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
